@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "target": "ES6",
+        "lib": [
+            "DOM",
+            "DOM.Iterable",
+            "ES6",
+            "ScriptHost",
+            "ES2015.Iterable"
+        ],
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "declaration": true
+    },
+    "include": [
+        "src"
+    ]
+}
