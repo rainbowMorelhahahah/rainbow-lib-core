@@ -17,9 +17,11 @@
         "experimentalDecorators": true,
         "noEmit": true,
         "jsx": "react-jsx",
-        "declaration": true
+        "declaration": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true
     },
     "include": [
-        "src"
+        "src/**/*"
     ]
 }
