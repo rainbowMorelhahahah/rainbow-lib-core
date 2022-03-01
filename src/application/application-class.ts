@@ -1,5 +1,6 @@
 import { CookieFactory, LocalStorageFactory } from "src/cache/publicApi";
 import { HttpClientFactory } from "src/request/publicApi";
+import { ArtisanServiceProvider } from "./providers";
 
 export default class Application {
 
@@ -39,6 +40,7 @@ export default class Application {
         this.setInstance('cookie', CookieFactory.getInstance());
         this.setInstance('localStoreage', LocalStorageFactory.getInstance());
         this.setInstance('request', HttpClientFactory.getInstance());
+        this.setInstance('provider', new ArtisanServiceProvider());
     }
 
 }
