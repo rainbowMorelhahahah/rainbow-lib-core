@@ -1,13 +1,37 @@
 import { AxiosRequestConfig, Method } from "axios";
-import { CustomResponse, IHttpClient } from "../interface";
+import { CustomResponse, IHttpClient, IHttpInterceptors } from "../interface";
 import AxiosClient from "../nettool/axios-client";
+import RequestInterceptors from "../observe/request-interceptors";
 
 export default class HttpClient implements IHttpClient {
 
     private okHttp: AxiosClient;
+    private interceptors: RequestInterceptors;
 
     public constructor() {
         this.okHttp = new AxiosClient();
+        this.interceptors = new RequestInterceptors();
+        this.interceptors.getInterceptors().subscribe(interceptors => {
+            this.okHttp.getOkHttp().interceptors.request.use(config => {
+                let result = {};
+                for (const interceptor of interceptors) {
+                    result = Object.assign(result, interceptor.handleHttpRequst(config))
+                }
+                return result;
+            })
+
+            this.okHttp.getOkHttp().interceptors.response.use(response => {
+                let result = {};
+                for (const interceptor of interceptors) {
+                    result = Object.assign(result, interceptor.hanldHttpResponse(response))
+                }
+                return result;
+            })
+        })
+    }
+
+    setInterceptors(interceptors: IHttpInterceptors): void {
+        this.interceptors.setInterceptors(interceptors);
     }
 
     Get(uri: string, query: any, options: AxiosRequestConfig<any>): Promise<CustomResponse>;
