@@ -1,0 +1,1 @@
+export { IHttpInterceptors } from './interface'

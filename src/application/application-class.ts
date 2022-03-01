@@ -1,3 +1,5 @@
+import { CookieFactory, LocalStorageFactory } from "src";
+
 export default class Application {
 
     private static instance: Application;
@@ -13,6 +15,13 @@ export default class Application {
         return this.instance;
     }
 
+    public constructor() {
+        /**
+         * 注册基本的功能模块
+         */
+        this.registerBaseBindings();
+    }
+
     public getVersion() {
         return this.version;
     }
@@ -25,4 +34,9 @@ export default class Application {
         return this.instance.get(abstract);
     }
 
+    public registerBaseBindings() {
+        this.setInstance('cookie', CookieFactory.getInstance());
+        this.setInstance('localStoreage', LocalStorageFactory.getInstance());
+    }
+    
 }
