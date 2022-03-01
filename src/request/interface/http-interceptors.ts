@@ -6,5 +6,4 @@ export interface IHttpInterceptors {
 
     hanldHttpResponse(config: AxiosResponse): void
 
-    
 }
