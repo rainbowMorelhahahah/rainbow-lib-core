@@ -7,15 +7,29 @@ export default class ArtisanServiceProvider {
 
     public add<T>(ctor: Ctor<T>): void
     public add<T>(identifier: DependencyIdentifier<T>): void
-    public add<T>(id: Ctor<T> | DependencyIdentifier<T>): void {
+    public add<T>(ctor: DependencyIdentifier<T>, instance: Ctor<T>): void
+    public add<T>(id: string | Ctor<T> | DependencyIdentifier<T>, instance?: Ctor<T>): void {
         if (isCtor(id)) {
-            let instance = id as Ctor<T>;
-            this.providerMap.set(id.name, new instance())
+            let target = id as Ctor<T>;
+            this.providerMap.set(id.name, new target())
+        }
+
+        if (typeof id === 'string' && instance !== undefined) {
+            this.providerMap.set(id, new instance())
         }
     }
 
     public get<T>(id: DependencyIdentifier<T>): T {
-        let instance = id as Ctor<T>;
-        return this.providerMap.get(instance.name)
+        let key = "";
+        if (isCtor(id)) {
+            const instance = id as Ctor<T>;
+            key = instance.name;
+        }
+
+        if (typeof id === 'string') {
+            key = id;
+        }
+        
+        return this.providerMap.get(key)
     }
 }
