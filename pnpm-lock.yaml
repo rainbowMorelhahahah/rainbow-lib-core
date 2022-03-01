@@ -7,7 +7,7 @@ specifiers:
   '@types/jest': ^27.4.1
   '@types/js-cookie': ^3.0.1
   '@types/react': ^17.0.39
-  axios: ^0.26.0
+  axios: ^0.25.0
   jest: ^27.5.1
   jest-environment-jsdom: ^27.5.1
   js-cookie: ^3.0.1
@@ -22,7 +22,7 @@ specifiers:
 dependencies:
   '@rollup/plugin-commonjs': registry.npmmirror.com/@rollup/plugin-commonjs/21.0.2_rollup@2.68.0
   '@rollup/plugin-node-resolve': registry.npmmirror.com/@rollup/plugin-node-resolve/13.1.3_rollup@2.68.0
-  axios: 0.26.0
+  axios: 0.25.0
   js-cookie: 3.0.1
   react: registry.npmmirror.com/react/17.0.2
   rxjs: 7.5.4
@@ -244,8 +244,8 @@ packages:
     resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=}
     dev: true
 
-  /axios/0.26.0:
-    resolution: {integrity: sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==}
+  /axios/0.25.0:
+    resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
     dependencies:
       follow-redirects: 1.14.9
     transitivePeerDependencies:

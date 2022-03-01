@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, Method } from "axios";
+import axios, { AxiosRequestConfig, Method } from "axios";
 import { CustomResponse, IHttpClient, IHttpInterceptors } from "../interface";
 import AxiosClient from "../nettool/axios-client";
 import RequestInterceptors from "../observe/request-interceptors";
@@ -13,20 +13,29 @@ export default class HttpClient implements IHttpClient {
         this.interceptors = new RequestInterceptors();
         this.interceptors.getInterceptors().subscribe(interceptors => {
             this.okHttp.getOkHttp().interceptors.request.use(config => {
-                let result = {};
+                let result = config;
                 for (const interceptor of interceptors) {
                     result = Object.assign(result, interceptor.handleHttpRequst(config))
                 }
                 return result;
             })
 
-            this.okHttp.getOkHttp().interceptors.response.use(response => {
-                let result = {};
-                for (const interceptor of interceptors) {
-                    result = Object.assign(result, interceptor.hanldHttpResponse(response))
+            this.okHttp.getOkHttp().interceptors.response.use(
+                response => {
+                    let result = response;
+                    for (const interceptor of interceptors) {
+                        result = Object.assign(result, interceptor.hanldHttpResponse(response))
+                    }
+                    return result;
+                },
+                err => {
+                    //已经取消的请求，我们需要把message 调到 response resolve里面进行正常的调用
+                    if (axios.isCancel(err)) {
+                        return Promise.resolve(err.message);
+                    }
+                    return Promise.reject(err);
                 }
-                return result;
-            })
+            )
         })
     }
 
@@ -70,12 +79,13 @@ export default class HttpClient implements IHttpClient {
                 data: body
             }
 
+
         return this.okHttp.getOkHttp().request({
             ...requestBody,
             url: uri,
             method: mode,
         }).then(res => {
             return res.data
-        })
+        }).catch(err => { console.log(err) })
     }
 }

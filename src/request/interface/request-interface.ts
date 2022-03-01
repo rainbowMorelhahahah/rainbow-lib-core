@@ -22,5 +22,6 @@ export interface IHttpClient {
     Delete(uri: string, data: any, options: AxiosRequestConfig): Promise<CustomResponse>
     Delete(uri: string, data: any, options?: AxiosRequestConfig): Promise<CustomResponse>
     Delete(uri: string, data?: any, options?: AxiosRequestConfig): Promise<CustomResponse>
+    
     setInterceptors(interceptors: IHttpInterceptors): void
 }

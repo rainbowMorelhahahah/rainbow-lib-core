@@ -1,4 +1,5 @@
-import { CookieFactory, LocalStorageFactory } from "src";
+import { CookieFactory, LocalStorageFactory } from "src/cache/publicApi";
+import { HttpClientFactory } from "src/request/publicApi";
 
 export default class Application {
 
@@ -37,6 +38,7 @@ export default class Application {
     public registerBaseBindings() {
         this.setInstance('cookie', CookieFactory.getInstance());
         this.setInstance('localStoreage', LocalStorageFactory.getInstance());
+        this.setInstance('request', HttpClientFactory.getInstance());
     }
-    
+
 }

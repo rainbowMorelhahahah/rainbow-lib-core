@@ -11,7 +11,7 @@ export default class AxiosClient {
         })
     }
 
-    public getOkHttp() {
+    public getOkHttp(): AxiosInstance {
         return this.okHttp;
     }
 
