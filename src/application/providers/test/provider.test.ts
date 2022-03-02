@@ -1,5 +1,4 @@
 import { provider } from ".."
-import { Ctor } from "../types/ctor";
 
 interface ITestService {
     name: string
@@ -8,6 +7,7 @@ interface ITestService {
 class TestService implements ITestService {
     public name: string = "rex";
 }
+
 
 describe("ArtisanServiceProvider test", () => {
     test("ioc", () => {

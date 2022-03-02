@@ -1,5 +1,5 @@
 {
-    "name": "@rex/core",
+    "name": "@linkseeks/core",
     "version": "1.0.4",
     "description": "这是一个核心的库,类似@anuglar/core",
     "types": "dist/index.d.ts",
