@@ -1,6 +1,6 @@
 {
     "name": "@linkseeks/core",
-    "version": "1.0.8",
+    "version": "1.1.2",
     "description": "这是一个核心的库,类似@anuglar/core",
     "types": "dist/index.d.ts",
     "module": "dist/index.esm.js",
@@ -15,7 +15,9 @@
     "author": "rex",
     "license": "ISC",
     "devDependencies": {
+        "@babel/core": "^7.17.5",
         "@rollup/plugin-alias": "^3.1.9",
+        "@rollup/plugin-babel": "^5.3.1",
         "@types/jest": "^27.4.1",
         "@types/js-cookie": "^3.0.1",
         "@types/react": "^17.0.39",

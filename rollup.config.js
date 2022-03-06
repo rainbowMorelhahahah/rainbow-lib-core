@@ -3,8 +3,8 @@ import pkg from './package.json';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import alias from '@rollup/plugin-alias';
+import babel from '@rollup/plugin-babel';
 
-const extensions = [".js", ".jsx", ".ts", ".tsx"];
 const external = [
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {}),
@@ -16,7 +16,8 @@ const plugins = [
     }),
     resolve(),
     commonjs(),
-    alias()
+    alias(),
+    babel()
 ]
 
 export default {

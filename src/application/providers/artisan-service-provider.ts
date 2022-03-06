@@ -1,13 +1,17 @@
-import { Ctor, isCtor } from "./types/ctor";
-import { DependencyIdentifier } from "./types/dependency-identifier";
-import { Container } from 'inversify';
-
 export default class ArtisanServiceProvider {
 
-    private providers: Container = new Container();
+    private providers = new Map();
 
     public add<T>(id: string, provider: any): void {
-        this.providers.bind<T>(id).to(provider);
+        this.providers.set(id, provider);
+    }
+
+    public get<T>(id: string): T {
+        return this.providers.get(id) as T
+    }
+
+    public getProviders() {
+        return this.providers;
     }
 
 }
