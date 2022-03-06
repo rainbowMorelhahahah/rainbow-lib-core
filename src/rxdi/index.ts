@@ -1,1 +1,5 @@
-export * from './publicApi'
+import { injectable } from 'inversify';
+
+export {
+    injectable,
+}
