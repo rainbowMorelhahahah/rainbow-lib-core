@@ -15,15 +15,19 @@ class MagicMethod {
       * @param prop the property called on the Proxy
       */
     const handler = {
-      get: function (target: any, prop: any) {
+      get: function (target: any, prop: string) {
         if (typeof target[prop] !== 'undefined') {
           return target[prop];
         }
         // TODO: implement custom logic
-        if ((prop as string).startsWith('get')) {
+        if (prop.startsWith('get')) {
           return function () {
             return new BehaviorSubject<any>("").asObservable();
           }
+        }
+
+        if (prop.startsWith('set')) {
+          return function () { }
         }
 
       }
