@@ -16,18 +16,18 @@ export function request(): IHttpClient {
  * 其他 AxiosRequestConfig 的配置项目
  * @returns 
  */
-export function requestFun<T>(uri: string, options: AxiosRequestConfig): T {
+export function requestFun<T>(uri: string, options: AxiosRequestConfig): Promise<T> {
   const { params, method } = options;
   delete options.params
   delete options.method
   switch (method) {
     case "GET":
-      return request().Get(uri, params, options) as unknown as T
+      return request().Get(uri, params, options) as unknown as Promise<T>
     case "POST":
-      return request().Post(uri, params, options) as unknown as T
+      return request().Post(uri, params, options) as unknown as Promise<T>
     case "DELETE":
-      return request().Delete(uri, params, options) as unknown as T
+      return request().Delete(uri, params, options) as unknown as Promise<T>
     default:
-      return request().Put(uri, params, options) as unknown as T
+      return request().Put(uri, params, options) as unknown as Promise<T>
   }
 }

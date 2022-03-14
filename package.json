@@ -1,6 +1,6 @@
 {
     "name": "@linkseeks/core",
-    "version": "1.1.6",
+    "version": "1.1.9",
     "description": "这是一个核心的库,类似@anuglar/core",
     "types": "dist/index.d.ts",
     "module": "dist/index.esm.js",
