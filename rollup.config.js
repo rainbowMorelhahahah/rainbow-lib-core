@@ -6,28 +6,28 @@ import alias from '@rollup/plugin-alias';
 import babel from '@rollup/plugin-babel';
 
 const external = [
-    ...Object.keys(pkg.dependencies || {}),
-    ...Object.keys(pkg.peerDependencies || {}),
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {}),
 ];
 
 const plugins = [
-    typescript({
-        tsconfig: 'tsconfig.json'
-    }),
-    resolve(),
-    commonjs(),
-    alias(),
-    babel()
+  typescript({
+    tsconfig: 'tsconfig.json'
+  }),
+  resolve(),
+  commonjs(),
+  alias(),
+  babel()
 ]
 
 export default {
-    input: 'src/index.ts',
-    output: {
-        file: pkg.module,
-        format: 'esm',
-        sourcemap: true,
-    },
-    external,
-    plugins
+  input: 'src/index.ts',
+  output: {
+    file: pkg.module,
+    format: 'esm',
+    sourcemap: true,
+  },
+  external,
+  plugins
 
 }
