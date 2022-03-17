@@ -81,6 +81,9 @@ export default class HttpClient implements IHttpClient {
         data: body
       }
 
+    const prefix = config()?.request?.prefix;
+
+    uri = uri.startsWith(prefix as string) ? uri : prefix + uri;
 
     return this.okHttp.getOkHttp().request({
       ...requestBody,

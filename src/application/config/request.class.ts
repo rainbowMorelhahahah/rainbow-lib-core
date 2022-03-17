@@ -13,9 +13,12 @@ class RequestConfig {
    */
   public cacheTimeOut: number;
 
+  prefix: string;
+
   constructor(data: any) {
     this.timeout = data.timeout || 60;
     this.cacheTimeOut = data.cacheTimeOut || 0;
+    this.prefix = data.prefix || '/api';
   }
 
 }
