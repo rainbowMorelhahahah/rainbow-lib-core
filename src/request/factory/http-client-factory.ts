@@ -1,3 +1,4 @@
+import { config } from "src/application/config";
 import { HttpClient } from "../impl";
 import AxiosCacheInterceptor from "../interceptors/axios-cache";
 

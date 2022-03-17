@@ -1,3 +1,4 @@
 export * from './app-func';
-export { default as Application } from './application-class';
-export * from './providers'
+export { provider, getProvider, setProvider } from './providers'
+export { default as Provider } from './providers/provider'
+export { config } from './config'
