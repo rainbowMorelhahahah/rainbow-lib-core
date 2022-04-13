@@ -16,7 +16,11 @@ const plugins = [
   }),
   resolve(),
   commonjs(),
-  alias(),
+  alias({
+    entries:{
+      '@':'src'
+    }
+  }),
   babel()
 ]
 

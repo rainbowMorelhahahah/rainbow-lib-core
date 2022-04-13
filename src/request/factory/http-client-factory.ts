@@ -1,11 +1,15 @@
-import { config } from "src/application/config";
 import { HttpClient } from "../impl";
 import AxiosCacheInterceptor from "../interceptors/axios-cache";
 
 export default class HttpClientFactory {
-    public static getInstance() {
-        const okHttp = new HttpClient()
-        okHttp.setInterceptors(new AxiosCacheInterceptor())
-        return okHttp;
+  static http: HttpClient;
+
+  public static getInstance() {
+    if (!this.http) {
+      this.http = new HttpClient()
+      this.http.setInterceptors(new AxiosCacheInterceptor())
     }
+    return this.http;
+  }
+  
 }

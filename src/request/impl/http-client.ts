@@ -1,10 +1,9 @@
 import axios, { AxiosRequestConfig, Method } from "axios";
-import { config } from "src/application/config";
-import { CustomResponse, IHttpClient, IHttpInterceptors } from "../interface";
+import { HttpInterceptor } from "../interface";
 import AxiosClient from "../nettool/axios-client";
 import RequestInterceptors from "../observe/request-interceptors";
 
-export default class HttpClient implements IHttpClient {
+export default class HttpClient {
 
   private okHttp: AxiosClient;
   private interceptors: RequestInterceptors;
@@ -41,32 +40,35 @@ export default class HttpClient implements IHttpClient {
     })
   }
 
-  setInterceptors(interceptors: IHttpInterceptors): void {
+  setInterceptors(interceptors: HttpInterceptor): void {
     this.interceptors.setInterceptors(interceptors);
   }
 
-  Get(uri: string, query: any, options: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Get(uri: string, query: any, options?: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Get(uri: string, query?: any, options?: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Get(uri: any, query?: any, options?: any): Promise<CustomResponse> {
+  Get<T>(uri: string, query: any, options: AxiosRequestConfig<any>): Promise<T>;
+  Get<T>(uri: string, query: any, options?: AxiosRequestConfig<any>): Promise<T>;
+  Get<T>(uri: string, query?: any, options?: AxiosRequestConfig<any>): Promise<T>;
+  Get<T>(uri: any, query?: any, options?: any): Promise<T> {
     return this.request('GET', uri, query, options);
   }
-  Post(uri: string, data: any, options: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Post(uri: string, data: any, options?: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Post(uri: string, data?: any, options?: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Post(uri: any, data?: any, options?: any): Promise<CustomResponse> {
+
+  Post<T>(uri: string, data: any, options: AxiosRequestConfig<any>): Promise<T>;
+  Post<T>(uri: string, data: any, options?: AxiosRequestConfig<any>): Promise<T>;
+  Post<T>(uri: string, data?: any, options?: AxiosRequestConfig<any>): Promise<T>;
+  Post<T>(uri: any, data?: any, options?: any): Promise<T> {
     return this.request('POST', uri, data, options);
   }
-  Put(uri: string, data: any, options: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Put(uri: string, data: any, options?: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Put(uri: string, data?: any, options?: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Put(uri: string, data?: any, options?: any): Promise<CustomResponse> {
+
+  Put<T>(uri: string, data: any, options: AxiosRequestConfig<any>): Promise<T>;
+  Put<T>(uri: string, data: any, options?: AxiosRequestConfig<any>): Promise<T>;
+  Put<T>(uri: string, data?: any, options?: AxiosRequestConfig<any>): Promise<T>;
+  Put<T>(uri: string, data?: any, options?: any): Promise<T> {
     return this.request('PUT', uri, data, options);
   }
-  Delete(uri: string, data: any, options: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Delete(uri: string, data: any, options?: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Delete(uri: string, data?: any, options?: AxiosRequestConfig<any>): Promise<CustomResponse>;
-  Delete(uri: any, data?: any, options?: any): Promise<CustomResponse> {
+  
+  Delete<T>(uri: string, data: any, options: AxiosRequestConfig<any>): Promise<T>;
+  Delete<T>(uri: string, data: any, options?: AxiosRequestConfig<any>): Promise<T>;
+  Delete<T>(uri: string, data?: any, options?: AxiosRequestConfig<any>): Promise<T>;
+  Delete<T>(uri: any, data?: any, options?: any): Promise<T> {
     return this.request('DELETE', uri, data, options);
   }
 
@@ -81,7 +83,7 @@ export default class HttpClient implements IHttpClient {
         data: body
       }
 
-    const prefix = config()?.request?.prefix;
+    const prefix = "";
 
     uri = uri.startsWith(prefix as string) ? uri : prefix + uri;
 
@@ -89,9 +91,10 @@ export default class HttpClient implements IHttpClient {
       ...requestBody,
       url: uri,
       method: mode,
-      timeout: config()?.request?.timeout || 60000
+      timeout: 60000
     }).then(res => {
       return res.data
     }).catch(err => { console.log(err) })
   }
+  
 }

@@ -1,9 +1,8 @@
+import { GetTimeNowUnxi } from "@/func";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { GetTimeNowUnxi } from "src/func";
-import { IHttpInterceptors } from "..";
-import { config as AppConfig } from 'src/application/config';
+import { HttpInterceptor } from "../interface";
 
-export default class AxiosCacheInterceptor implements IHttpInterceptors {
+export default class AxiosCacheInterceptor implements HttpInterceptor {
 
   private cache: Map<string | undefined, any> = new Map<string, any>();
 
@@ -19,7 +18,7 @@ export default class AxiosCacheInterceptor implements IHttpInterceptors {
     const cahceKey = `${config.url}${JSON.stringify(config.params)}`;
     let data = this.cache.get(cahceKey);
 
-    const CACHETIMEOUT = AppConfig()?.request?.cacheTimeOut || 60000;
+    const CACHETIMEOUT = 60000;
     if (data && GetTimeNowUnxi() - data.expire < Number(CACHETIMEOUT)) {
       source.cancel(data);
     }

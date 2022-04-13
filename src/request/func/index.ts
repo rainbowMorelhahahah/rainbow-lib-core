@@ -1,9 +1,9 @@
 import { AxiosRequestConfig } from "axios";
-import { app } from "src/application/app-func";
-import { IHttpClient } from "../interface";
+import { HttpClientFactory } from "../factory";
+import { HttpClient } from "../impl";
 
-export function request(): IHttpClient {
-  return app().getInstance('request');
+export function request(): HttpClient {
+  return HttpClientFactory.getInstance();
 }
 
 /**
