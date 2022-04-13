@@ -4,6 +4,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import alias from '@rollup/plugin-alias';
 import babel from '@rollup/plugin-babel';
+//import server from 'rollup-plugin-serve';
+//import html from '@rollup/plugin-html';
 
 const external = [
   ...Object.keys(pkg.dependencies || {}),
@@ -17,11 +19,13 @@ const plugins = [
   resolve(),
   commonjs(),
   alias({
-    entries:{
-      '@':'src'
+    entries: {
+      '@': 'src'
     }
   }),
-  babel()
+  babel({
+    babelHelpers: "bundled"
+  }),
 ]
 
 export default {

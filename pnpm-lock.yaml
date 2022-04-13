@@ -5,6 +5,7 @@ specifiers:
   '@rollup/plugin-alias': ^3.1.9
   '@rollup/plugin-babel': ^5.3.1
   '@rollup/plugin-commonjs': ^21.0.2
+  '@rollup/plugin-html': ^0.2.4
   '@rollup/plugin-node-resolve': ^13.1.3
   '@types/crypto-js': ^4.1.1
   '@types/enzyme': ^3.10.12
@@ -25,7 +26,7 @@ specifiers:
   react-dom: 17.0.2
   react-router-dom: ^6.2.2
   rollup: ^2.68.0
-  rollup-plugin-swc: ^0.2.1
+  rollup-plugin-serve: ^1.1.0
   rollup-plugin-typescript2: ^0.31.2
   rxjs: ^7.5.4
   ts-jest: ^27.1.3
@@ -34,6 +35,7 @@ specifiers:
 
 dependencies:
   '@rollup/plugin-commonjs': registry.npmmirror.com/@rollup/plugin-commonjs/21.0.2_rollup@2.68.0
+  '@rollup/plugin-html': 0.2.4_rollup@2.68.0
   '@rollup/plugin-node-resolve': registry.npmmirror.com/@rollup/plugin-node-resolve/13.1.3_rollup@2.68.0
   '@types/enzyme': 3.10.12
   '@types/react-dom': 17.0.2
@@ -46,6 +48,7 @@ dependencies:
   react: registry.npmmirror.com/react/17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-router-dom: 6.2.2_react-dom@17.0.2+react@17.0.2
+  rollup-plugin-serve: 1.1.0
   rxjs: 7.5.4
 
 devDependencies:
@@ -60,7 +63,6 @@ devDependencies:
   jest: registry.npmmirror.com/jest/27.5.1
   jest-environment-jsdom: 27.5.1
   rollup: 2.68.0
-  rollup-plugin-swc: 0.2.1_rollup@2.68.0
   rollup-plugin-typescript2: 0.31.2_rollup@2.68.0+typescript@4.5.5
   ts-jest: registry.npmmirror.com/ts-jest/27.1.3_692dbbf7059032021eb60f9e5219d064
   tslib: 2.3.1
@@ -117,6 +119,15 @@ packages:
       rollup: 2.68.0
       slash: 3.0.0
     dev: true
+
+  /@rollup/plugin-html/0.2.4_rollup@2.68.0:
+    resolution: {integrity: sha512-x0qpNXxbmGa9Jnl4OX89AORPe2T/a4DqNK69BGRnEdaPKq6MdiUXSTam/eCkF5DxkQGcRcPq0L4vzr/E3q4mVA==}
+    engines: {node: '>= 8.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0
+    dependencies:
+      rollup: 2.68.0
+    dev: false
 
   /@rollup/pluginutils/4.1.2:
     resolution: {integrity: sha512-ROn4qvkxP9SyPeHaf7uQC/GPFY6L/OWy9+bd9AwcjOAWQwxRscoEyAUD8qCY5o5iL4jqQwoLk2kaTKJPb/HwzQ==}
@@ -1114,6 +1125,12 @@ packages:
       mime-db: 1.51.0
     dev: true
 
+  /mime/3.0.0:
+    resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    dev: false
+
   /moo/0.5.1:
     resolution: {integrity: sha512-I1mnb5xn4fO80BH9BLcF0yLypy2UKl+Cb01Fu0hJRkJjlCRtxZMWkTdAtDd5ZqCOxtCkhmRwyI57vWT+1iZ67w==}
     dev: false
@@ -1195,6 +1212,11 @@ packages:
       call-bind: 1.0.2
       define-properties: 1.1.3
       es-abstract: 1.19.4
+    dev: false
+
+  /opener/1.5.2:
+    resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
+    hasBin: true
     dev: false
 
   /optionator/0.8.3:
@@ -1423,15 +1445,12 @@ packages:
     engines: {node: '>=0.12'}
     dev: false
 
-  /rollup-plugin-swc/0.2.1_rollup@2.68.0:
-    resolution: {integrity: sha512-wWRYt9tC0aIBvRQHNnVtwJ6DRPDj9XYpOAcOyFB11sKSkR/R+NAmbrjBACCPNVmZcxg6joV29wXgb5mU1DI7eA==}
-    peerDependencies:
-      '@swc/core': '>=1.0'
-      rollup: '>=1.5.0'
+  /rollup-plugin-serve/1.1.0:
+    resolution: {integrity: sha512-pYkSsuA0/psKqhhictkJw1c2klya5b+LlCvipWqI9OE1aG2M97mRumZCbBlry5CMEOzYBBgSDgd1694sNbmyIw==}
     dependencies:
-      '@rollup/pluginutils': 4.1.2
-      rollup: 2.68.0
-    dev: true
+      mime: 3.0.0
+      opener: 1.5.2
+    dev: false
 
   /rollup-plugin-typescript2/0.31.2_rollup@2.68.0+typescript@4.5.5:
     resolution: {integrity: sha512-hRwEYR1C8xDGVVMFJQdEVnNAeWRvpaY97g5mp3IeLnzhNXzSVq78Ye/BJ9PAaUfN4DXa/uDnqerifMOaMFY54Q==}
