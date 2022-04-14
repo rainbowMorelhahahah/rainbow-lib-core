@@ -1,0 +1,1 @@
+export { default as ConfigurationFatory } from './fatory/configuration';
