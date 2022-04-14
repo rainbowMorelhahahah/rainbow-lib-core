@@ -1,3 +1,4 @@
+import { HttpClientConfig } from "./interface/http-client";
 
 export default class Configuration {
 
@@ -11,11 +12,14 @@ export default class Configuration {
     this.config.set(key, value);
   }
 
-  setHttpClient(value: any) {
-    this.setConfig("httpClien", value);
+  setHttpClient(value: HttpClientConfig) {
+    this.setConfig("httpClien", {
+      ...this.getHttpClient(),
+      ...value
+    });
   }
 
-  getHttpClient() {
+  getHttpClient(): HttpClientConfig {
     return this.config.get("httClient");
   }
 

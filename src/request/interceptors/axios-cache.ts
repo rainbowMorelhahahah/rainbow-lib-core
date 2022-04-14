@@ -1,3 +1,4 @@
+import { ConfigurationFatory } from "@/configuration";
 import { GetTimeNowUnxi } from "@/func";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { HttpInterceptor } from "../interface";
@@ -7,6 +8,8 @@ export default class AxiosCacheInterceptor implements HttpInterceptor {
   private cache: Map<string | undefined, any> = new Map<string, any>();
 
   private capacity: number = 20;
+
+  private httpConfig = ConfigurationFatory.getInstance().getHttpClient()
 
   handleHttpRequst(config: AxiosRequestConfig): AxiosRequestConfig {
     //只对GET请求进行缓存
@@ -18,7 +21,7 @@ export default class AxiosCacheInterceptor implements HttpInterceptor {
     const cahceKey = `${config.url}${JSON.stringify(config.params)}`;
     let data = this.cache.get(cahceKey);
 
-    const CACHETIMEOUT = 60000;
+    const CACHETIMEOUT = this.httpConfig.cacheTimeout;
     if (data && GetTimeNowUnxi() - data.expire < Number(CACHETIMEOUT)) {
       source.cancel(data);
     }
