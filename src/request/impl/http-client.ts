@@ -1,3 +1,5 @@
+import { ConfigurationFatory } from "@/configuration";
+import { HttpClientConfig } from "@/configuration/interface/http-client";
 import axios, { AxiosRequestConfig, Method } from "axios";
 import { HttpInterceptor } from "../interface";
 import AxiosClient from "../nettool/axios-client";
@@ -7,6 +9,8 @@ export default class HttpClient {
 
   private okHttp: AxiosClient;
   private interceptors: RequestInterceptors;
+
+  private appConfig: HttpClientConfig = ConfigurationFatory.getInstance().getHttpClient()
 
   public constructor() {
     this.okHttp = new AxiosClient();
@@ -64,7 +68,7 @@ export default class HttpClient {
   Put<T>(uri: string, data?: any, options?: any): Promise<T> {
     return this.request('PUT', uri, data, options);
   }
-  
+
   Delete<T>(uri: string, data: any, options: AxiosRequestConfig<any>): Promise<T>;
   Delete<T>(uri: string, data: any, options?: AxiosRequestConfig<any>): Promise<T>;
   Delete<T>(uri: string, data?: any, options?: AxiosRequestConfig<any>): Promise<T>;
@@ -91,10 +95,10 @@ export default class HttpClient {
       ...requestBody,
       url: uri,
       method: mode,
-      timeout: 60000
+      timeout: this.appConfig.timeout || 10000
     }).then(res => {
       return res.data
     }).catch(err => { console.log(err) })
   }
-  
+
 }
