@@ -1,14 +1,6 @@
-import React from "react"
-import { KEY } from "./constants"
+import React, { ReactNode } from "react";
 
-
-export type DiProviderProps = {
-  children?: React.ReactNode | React.FC
-  target?: React.ReactNode
-  use?: any[]
+export interface ApplicationProps {
+  children: Readonly<{ children?: ReactNode | undefined }>
 }
 
-export interface Implementation {
-  displayName: string
-  [KEY]: string
-}

@@ -1,23 +1,10 @@
-import { PACKAGE_NAME } from "./constants";
-import { Context } from "./context"
-import { mock, warnOnce } from "./utils";
+import { interfaces } from "inversify";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "./context";
 
-function di(deps: any[], target?: any) {
-  if (Array.isArray(deps)) {
-    //@ts-ignore
-    const { getDependencies = (v) => v } = Context._currentValue || {}
-    return getDependencies(deps, target);
-  } else {
-    warnOnce(`Seems like you are using ${PACKAGE_NAME} without Babel plugin. ` +
-      `Please add '${PACKAGE_NAME}/babel-plugin' to your Babel config ` +
-      `or import from '${PACKAGE_NAME}/macro' if your are using 'babel-plugin-macros'. ` +
-      `di(...) run as a no-op.`);
-  }
-}
+export function useInject<T>(identifier: interfaces.ServiceIdentifier<T>) {
+  const { container } = useContext(Context)
 
-/** @deprecated use injectable instead */
-di.mock = mock;
-
-export {
-  di
+  if (!container) { throw new Error("container null create!") }
+  return container.get<T>(identifier);
 }
