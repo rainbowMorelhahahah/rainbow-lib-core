@@ -7,5 +7,4 @@ export const Context = React.createContext<{
   container: null
 })
 
-export const DiProvider = Context.Provider;
 export const DiConsumer = Context.Consumer;
