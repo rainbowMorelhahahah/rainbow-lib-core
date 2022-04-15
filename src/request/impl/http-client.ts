@@ -95,7 +95,7 @@ export default class HttpClient {
       ...requestBody,
       url: uri,
       method: mode,
-      timeout: this.appConfig.timeout || 10000
+      timeout: this.appConfig?.timeout || 10000
     }).then(res => {
       return res.data
     }).catch(err => { console.log(err) })
