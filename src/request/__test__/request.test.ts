@@ -2,7 +2,7 @@ import { ConfigurationFatory } from "@/configuration"
 import { request } from ".."
 
 describe("test request", () => {
-  test("interceptors request", async () => {
+  it("interceptors request", async () => {
     const okHttp = request()
     let data1 = await okHttp.Get("https://tenapi.cn/yiyan", {
       "format": "text"
@@ -14,7 +14,7 @@ describe("test request", () => {
   })
 
 
-  test("test gloab config props", async () => {
+  it("test gloab config props", async () => {
 
     ConfigurationFatory.getInstance().setHttpClient({
       cacheTimeout: 60000
