@@ -36,7 +36,7 @@ const App = () => {
 
   return (
     <>
-      {sendHello.send()}
+      {sendHello?.send()}
     </>
   );
 }
@@ -44,11 +44,11 @@ const App = () => {
 const AppModify = () => {
 
   const sendHello = useInject<PrivateTest>('sendHello')
-  sendHello.setValue("rex")
-  
+  sendHello?.setValue("rex")
+
   return (
     <>
-      {sendHello.send()}
+      {sendHello?.send()}
     </>
   );
 }
