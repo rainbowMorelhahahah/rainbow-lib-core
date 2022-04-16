@@ -1,1 +1,1 @@
-export * from './public_api';
+export {default as App} from './public_api';
