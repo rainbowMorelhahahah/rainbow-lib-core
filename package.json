@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "build": "rollup -c",
-    "yun":"pnpm build && npmp publish"
+    "yun":"pnpm build && pnpm publish"
   },
   "repository": {
     "type": "git",
