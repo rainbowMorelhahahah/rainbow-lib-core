@@ -35,7 +35,7 @@ class Application {
      * 运行前做的事情
      */
     for (const fn of this.fns) {
-      fn(this)
+      fn()
     }
 
     return (

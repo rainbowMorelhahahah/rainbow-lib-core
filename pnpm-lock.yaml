@@ -23,6 +23,7 @@ specifiers:
   jest: ^27.5.1
   jest-environment-jsdom: ^27.5.1
   js-cookie: ^3.0.1
+  mfy: ^0.4.1
   react: ^17.0.2
   react-dom: 17.0.2
   react-router-dom: ^6.2.2
@@ -48,6 +49,7 @@ dependencies:
   enzyme: 3.11.0
   inversify: registry.npmmirror.com/inversify/6.0.1
   js-cookie: 3.0.1
+  mfy: 0.4.1
   react: registry.npmmirror.com/react/17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-router-dom: 6.2.2_react-dom@17.0.2+react@17.0.2
@@ -1131,6 +1133,10 @@ packages:
     dependencies:
       semver: registry.npmmirror.com/semver/6.3.0
     dev: true
+
+  /mfy/0.4.1:
+    resolution: {integrity: sha512-PFXpzFWQgnxrroJkFudUeVoik8kEmHC2wO+aRHmPxhV62NvnRjU0CCvj0Gr1f3SfIgM/FkqHlX6Pcy/FpLSD1Q==}
+    dev: false
 
   /micromatch/4.0.4:
     resolution: {integrity: sha512-pRmzw/XUcwXGpD9aI9q/0XOwLNygjETJ8y0ao0wdqprrzDa4YnxLcz7fQRZr8voh8V10kGhABbNcHVk5wHgWwg==}
