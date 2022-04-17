@@ -6,8 +6,8 @@
   "module": "dist/index.esm.js",
   "scripts": {
     "test": "jest",
-    "build": "rollup -c",
-    "yun":"pnpm build && pnpm publish"
+    "build": "rm -rf ./dist && rollup -c",
+    "yun": "pnpm build && pnpm publish"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "@types/crypto-js": "^4.1.1",
     "@types/jest": "^27.4.1",
     "@types/js-cookie": "^3.0.1",
-    "@types/react": "^17.0.39",
+    "@types/react": "^17.0.2",
     "@types/react-router-dom": "^5.3.3",
     "jest": "^27.5.1",
     "jest-environment-jsdom": "^27.5.1",
@@ -39,9 +39,10 @@
     "@rollup/plugin-commonjs": "^21.0.2",
     "@rollup/plugin-html": "^0.2.4",
     "@rollup/plugin-node-resolve": "^13.1.3",
+    "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",
     "@types/enzyme": "^3.10.12",
-    "@types/react-dom": "17.0.2",
+    "@types/react-dom": "^17.0.2",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "axios": "^0.25.0",
     "crypto-js": "^4.1.1",
@@ -50,11 +51,12 @@
     "js-cookie": "^3.0.1",
     "mfy": "^0.4.1",
     "react": "^17.0.2",
-    "react-dom": "17.0.2",
+    "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.2",
     "reflect-metadata": "^0.1.13",
     "rollup-plugin-serve": "^1.1.0",
-    "rxjs": "^7.5.4"
+    "rxjs": "^7.5.4",
+    "webpack-merge": "^5.8.0"
   },
   "jest": {
     "transform": {

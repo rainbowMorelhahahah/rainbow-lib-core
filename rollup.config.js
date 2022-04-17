@@ -4,9 +4,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import alias from '@rollup/plugin-alias';
 import babel from '@rollup/plugin-babel';
-import server from 'rollup-plugin-serve';
-import html from '@rollup/plugin-html';
-import path from 'path';
 
 const external = [
   ...Object.keys(pkg.dependencies || {}),
@@ -30,6 +27,7 @@ const plugins = [
 ]
 
 export default [
+  
   {
     input: 'src/index.ts',
     output: {
@@ -39,6 +37,17 @@ export default [
     },
     external,
     plugins
-
   },
+  // "unpkg": "dist/index.esm.js",
+  // {
+  //   input: 'src/index.ts',
+  //   output: {
+  //     file: pkg.unpkg,
+  //     format: 'umd',
+  //     name: 'index.umd',
+  //     sourcemap: true,
+  //   },
+  //   external,
+  //   plugins
+  // }
 ]

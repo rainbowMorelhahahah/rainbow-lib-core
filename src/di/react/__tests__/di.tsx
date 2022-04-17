@@ -1,11 +1,12 @@
 import 'reflect-metadata';
 import { mount, configure, shallow } from "enzyme";
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { useInject } from '../consumer';
+
 import { injectable } from 'inversify';
 import Application from '@/app/app';
 import { container } from '@/di/container';
 import { renderHook } from '@testing-library/react-hooks';
+import { useInject } from '@/hooks/useInject';
 
 
 configure({ adapter: new Adapter() });
@@ -25,7 +26,7 @@ class TestSerivceImpl implements TestSerivce {
 
 const App = () => {
 
-  const service = useInject<TestSerivceImpl>('testSerivce');
+  const [service] = useInject<TestSerivceImpl>('testSerivce');
 
   return (
     <>
@@ -54,7 +55,8 @@ describe("test the di", () => {
      */
     setTimeout(() => {
       const { result } = renderHook(() => useInject<TestSerivce>('testService'))
-      expect(result.current?.name).toBe('rex')
+      const [service] = result.current;
+      expect(service?.name).toBe('rex')
     }, 100)
   })
 })

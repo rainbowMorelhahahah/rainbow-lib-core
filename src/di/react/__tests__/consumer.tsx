@@ -2,9 +2,9 @@ import 'reflect-metadata';
 import { mount, configure } from "enzyme";
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { Application } from "../utils";
-import { useInject } from '../consumer';
 import { injectable } from 'inversify';
 import { container } from '@/di/container';
+import { useInject } from '@/hooks/useInject';
 
 configure({ adapter: new Adapter() })
 
@@ -32,7 +32,7 @@ container.bind<PrivateTest>('sendHello').to(SendHello)
 
 const App = () => {
 
-  const sendHello = useInject<PrivateTest>('sendHello')
+  const [sendHello] = useInject<PrivateTest>('sendHello')
 
   return (
     <>
@@ -43,7 +43,7 @@ const App = () => {
 
 const AppModify = () => {
 
-  const sendHello = useInject<PrivateTest>('sendHello')
+  const [sendHello] = useInject<PrivateTest>('sendHello')
   sendHello?.setValue("rex")
 
   return (

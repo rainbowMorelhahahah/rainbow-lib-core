@@ -1,8 +1,8 @@
+import { Context } from "@/di/react/context";
 import { interfaces } from "inversify";
 import { useContext, useEffect, useState } from "react";
-import { Context } from "./context";
 
-export function useInject<T>(identifier: interfaces.ServiceIdentifier<T>) {
+export function useInject<T>(identifier: interfaces.ServiceIdentifier<T>): [T | undefined] {
   const { container } = useContext(Context)
 
   const [service, setService] = useState<T>();
@@ -13,6 +13,6 @@ export function useInject<T>(identifier: interfaces.ServiceIdentifier<T>) {
     const target = container?.get<T>(identifier)
     setService(target)
   }, [container])
- 
-  return service;
+
+  return [service];
 }
